@@ -1,0 +1,60 @@
+"Asm.fif" include
+// automatically generated from `/home/ruliov/.config/toncli/func-libs/stdlib.func` `/home/ruliov/projects/ton/afkton/func/code.fc` 
+PROGRAM{
+  DECLPROC recv_internal
+  DECLPROC recv_external
+  95668 DECLMETHOD get_last_date
+  recv_internal PROC:<{
+    //  message in_msg
+    DROP	//  message
+    CTOS	//  s
+    4 PUSHINT	//  s _5=4
+    SDSKIPFIRST	//  s
+    LDMSGADDR	//  _68 _67
+    DROP	//  addr
+    c4 PUSH	//  addr _11
+    CTOS	//  addr data
+    32 PLDU	//  addr prev_time
+    NOW	//  addr prev_time curr_time
+    OVER	//  addr prev_time curr_time prev_time
+    0 EQINT	//  addr prev_time curr_time _19
+    IF:<{	//  addr prev_time curr_time
+      NIP	//  addr curr_time
+      DUP	//  addr prev_time curr_time
+    }>	//  addr prev_time curr_time
+    DUP
+    NEWC	//  addr prev_time curr_time curr_time _21
+    32 STU	//  addr prev_time curr_time _23
+    ENDC	//  addr prev_time curr_time new_data
+    c4 POP
+    SWAP	//  addr curr_time prev_time
+    SUB	//  addr _26
+    3600 PUSHINT	//  addr _26 _31
+    GEQ	//  addr _32
+    IF:<{	//  addr
+      7309458069689690478 PUSHINT	//  addr _34=7309458069689690478
+      16 PUSHINT	//  addr _34=7309458069689690478 _35=16
+      NEWC	//  addr _34=7309458069689690478 _35=16 _36
+      6 STU	//  addr _34=7309458069689690478 _42
+      ROT	//  _34=7309458069689690478 _42 addr
+      STSLICER	//  _34=7309458069689690478 _43
+      0 PUSHINT	//  _34=7309458069689690478 _43 _44=0
+      STGRAMS	//  _34=7309458069689690478 _45
+      203 STU	//  _63
+      ENDC	//  msg
+      7 PUSHPOW2	//  msg _65=128
+      SENDRAWMSG
+    }>ELSE<{
+      DROP	// 
+    }>
+  }>
+  recv_external PROC:<{
+    // 
+  }>
+  get_last_date PROC:<{
+    // 
+    c4 PUSH	//  _0
+    CTOS	//  _1
+    32 PLDU	//  _3
+  }>
+}END>c

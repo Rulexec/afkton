@@ -1,0 +1,118 @@
+forall X -> () dump(X data) impure asm "s0 DUMP DROP";
+
+[[int, int, int, int, int, int, int, int, int, int, int, int]] get_c7_11() impure asm "c7 PUSH";
+() set_c7(tuple value) impure asm "c7 POP";
+
+() change_current_time1(int time) impure method_id {
+    [int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11] = get_c7_11().unsafe_tuple().car();
+    set_c7(unsafe_tuple([[a1, a2, a3, time, a5, a6, a7, a8, a9, a10, a11]]));
+}
+
+[int, tuple, cell, tuple, int] init_data() method_id(0) {
+    int function_selector = 0;
+
+    cell msg = begin_cell()
+        .store_uint(4, 1 + 3)
+        ;; addr_std$10 anycast:(Maybe Anycast) 
+        ;;  workchain_id:int8 address:bits256  = MsgAddressInt;
+        .store_uint(2, 2)
+        .store_uint(0, 1)
+        .store_uint(0, 8)
+        .store_uint(42, 256)
+        .store_uint(0, 2)
+        ;; currencies$_ grams:Grams other:ExtraCurrencyCollection = CurrencyCollection;
+        ;; extra_currencies$_ dict:(HashmapE 32 (VarUInteger 32)) = ExtraCurrencyCollection;
+        .store_grams(0)
+        ;; dict + ihr_fee + fwd_fee + created_lt + created_at + init:nothing + body:left
+        .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+        .end_cell();
+
+    tuple stack = unsafe_tuple([msg, begin_cell().end_cell().begin_parse()]);
+
+    change_current_time1(1649696119);
+
+    cell data = begin_cell()
+        .store_uint(0, 32)
+        .end_cell();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ init(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(1) {
+    throw_if(100, exit_code != 0); ;; test need to be passed
+
+    var ds = data.begin_parse();
+
+    throw_if(101, ds.preload_uint(32) != 1649696119);
+    throw_if(102, actions.begin_parse().slice_bits() != 0);
+}
+
+[int, tuple, cell, tuple, int] no_win_data() method_id(2) {
+    int function_selector = 0;
+
+    cell msg = begin_cell()
+        .store_uint(4, 1 + 3)
+        ;; addr_std$10 anycast:(Maybe Anycast) 
+        ;;  workchain_id:int8 address:bits256  = MsgAddressInt;
+        .store_uint(2, 2)
+        .store_uint(0, 1)
+        .store_uint(0, 8)
+        .store_uint(42, 256)
+        .store_uint(0, 2)
+        ;; currencies$_ grams:Grams other:ExtraCurrencyCollection = CurrencyCollection;
+        ;; extra_currencies$_ dict:(HashmapE 32 (VarUInteger 32)) = ExtraCurrencyCollection;
+        .store_grams(0)
+        ;; dict + ihr_fee + fwd_fee + created_lt + created_at + init:nothing + body:left
+        .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+        .end_cell();
+
+    tuple stack = unsafe_tuple([msg, begin_cell().end_cell().begin_parse()]);
+
+    change_current_time1(1649696400);
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+_ no_win(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(3) {
+    throw_if(100, exit_code != 0); ;; test need to be passed
+
+    var ds = data.begin_parse();
+
+    throw_if(101, ds.preload_uint(32) != 1649696400);
+    throw_if(102, actions.begin_parse().slice_bits() != 0);
+}
+
+[int, tuple, cell, tuple, int] epic_win_data() method_id(4) {
+    int function_selector = 0;
+
+    cell msg = begin_cell()
+        .store_uint(4, 1 + 3)
+        ;; addr_std$10 anycast:(Maybe Anycast) 
+        ;;  workchain_id:int8 address:bits256  = MsgAddressInt;
+        .store_uint(2, 2)
+        .store_uint(0, 1)
+        .store_uint(0, 8)
+        .store_uint(42, 256)
+        .store_uint(0, 2)
+        ;; currencies$_ grams:Grams other:ExtraCurrencyCollection = CurrencyCollection;
+        ;; extra_currencies$_ dict:(HashmapE 32 (VarUInteger 32)) = ExtraCurrencyCollection;
+        .store_grams(0)
+        ;; dict + ihr_fee + fwd_fee + created_lt + created_at + init:nothing + body:left
+        .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+        .end_cell();
+
+    tuple stack = unsafe_tuple([msg, begin_cell().end_cell().begin_parse()]);
+
+    change_current_time1(1649696400 + 24 * 60 * 60 + 30);
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+_ epic_win(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(5) {
+    throw_if(100, exit_code != 0); ;; test need to be passed
+
+    var ds = data.begin_parse();
+
+    throw_if(101, ds.preload_uint(32) != 1649696400 + 24 * 60 * 60 + 30);
+    throw_if(102, actions.begin_parse().slice_bits() == 0);
+}

@@ -1,0 +1,187 @@
+"Asm.fif" include
+// automatically generated from `/home/ruliov/.config/toncli/func-libs/stdlib-tests.func` `/home/ruliov/.config/toncli/func-libs/tests-helpers.func` `/home/ruliov/projects/ton/afkton/tests/test.fc` 
+PROGRAM{
+  85860 DECLMETHOD get_c7
+  97524 DECLMETHOD change_current_time1
+  0 DECLMETHOD init_data
+  1 DECLMETHOD init
+  2 DECLMETHOD no_win_data
+  3 DECLMETHOD no_win
+  4 DECLMETHOD epic_win_data
+  5 DECLMETHOD epic_win
+  get_c7 PROC:<{
+    // 
+    124711402 PUSHINT	//  _2=124711402
+    0 PUSHINT	//  _2=124711402 _3=0
+    DUP	//  _2=124711402 _3=0 _4=0
+    NOW	//  _2=124711402 _3=0 _4=0 _5
+    1 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1
+    DUP	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1
+    239 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239
+    1000000000 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _10=1000000000
+    PUSHNULL	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _10=1000000000 _11
+    PAIR	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12
+    MYADDR	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12 _13
+    CONFIGROOT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12 _13 _14
+    10 TUPLE	//  _15
+    SINGLE	//  _16
+  }>
+  change_current_time1 PROC:<{
+    //  time
+    c7 PUSH	//  time _13
+    CAR	//  time _14
+    11 UNTUPLE	//  time _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30
+    s7 POP	//  time a1 a2 a3 a11 a5 a6 a7 a8 a9 a10
+    s9 s10 XCHG
+    s8 s9 XCHG
+    s7 s8 XCHG
+    6 ROLL	//  a1 a2 a3 time a5 a6 a7 a8 a9 a10 a11
+    11 TUPLE	//  _17
+    SINGLE	//  _18
+    c7 POP
+  }>
+  init_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    s0 s0 PUSH2	//  function_selector=0 _3=0 _4=0
+    42 PUSHINT	//  function_selector=0 _3=0 _4=0 _5=42
+    s1 s1 PUSH2	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0
+    2 PUSHINT	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _8=2
+    4 PUSHINT	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _8=2 _9=4
+    NEWC	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _8=2 _9=4 _10
+    4 STU	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _8=2 _14
+    2 STU	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _16
+    1 STU	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _18
+    8 STU	//  function_selector=0 _3=0 _4=0 _5=42 _20
+    256 STU	//  function_selector=0 _3=0 _4=0 _22
+    2 STU	//  function_selector=0 _3=0 _24
+    OVER	//  function_selector=0 _3=0 _24 _25=0
+    STGRAMS	//  function_selector=0 _3=0 _26
+    107 STU	//  function_selector=0 _40
+    ENDC	//  function_selector=0 msg
+    NEWC	//  function_selector=0 msg _44
+    ENDC	//  function_selector=0 msg _45
+    CTOS	//  function_selector=0 msg _46
+    PAIR	//  function_selector=0 stack
+    1649696119 PUSHINT	//  function_selector=0 stack _48=1649696119
+    change_current_time1 CALLDICT
+    OVER	//  function_selector=0 stack _51=0
+    NEWC	//  function_selector=0 stack _51=0 _52
+    32 STU	//  function_selector=0 stack _54
+    ENDC	//  function_selector=0 stack data
+    get_c7 INLINECALLDICT	//  function_selector=0 stack data _57
+    PUSHNULL	//  function_selector=0 stack data _57 _58
+    5 TUPLE	//  _56
+  }>
+  init PROC:<{
+    //  exit_code data stack actions gas
+    DROP
+    NIP	//  exit_code data actions
+    s0 s2 XCHG	//  actions data exit_code
+    0 NEQINT	//  actions data _7
+    100 THROWIF
+    CTOS	//  actions ds
+    32 PLDU	//  actions _13
+    1649696119 PUSHINT	//  actions _13 _14=1649696119
+    NEQ	//  actions _15
+    101 THROWIF
+    CTOS	//  _18
+    SBITS	//  _19
+    0 NEQINT	//  _21
+    102 THROWIF
+  }>
+  no_win_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    s0 s0 PUSH2	//  function_selector=0 _3=0 _4=0
+    42 PUSHINT	//  function_selector=0 _3=0 _4=0 _5=42
+    s1 s1 PUSH2	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0
+    2 PUSHINT	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _8=2
+    4 PUSHINT	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _8=2 _9=4
+    NEWC	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _8=2 _9=4 _10
+    4 STU	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _8=2 _14
+    2 STU	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _16
+    1 STU	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _18
+    8 STU	//  function_selector=0 _3=0 _4=0 _5=42 _20
+    256 STU	//  function_selector=0 _3=0 _4=0 _22
+    2 STU	//  function_selector=0 _3=0 _24
+    OVER	//  function_selector=0 _3=0 _24 _25=0
+    STGRAMS	//  function_selector=0 _3=0 _26
+    107 STU	//  function_selector=0 _40
+    ENDC	//  function_selector=0 msg
+    NEWC	//  function_selector=0 msg _44
+    ENDC	//  function_selector=0 msg _45
+    CTOS	//  function_selector=0 msg _46
+    PAIR	//  function_selector=0 stack
+    1649696400 PUSHINT	//  function_selector=0 stack _48=1649696400
+    change_current_time1 CALLDICT
+    10 GETPARAM UNPAIR DROP	//  function_selector=0 stack _51
+    get_c7 INLINECALLDICT	//  function_selector=0 stack _51 _52
+    PUSHNULL	//  function_selector=0 stack _51 _52 _53
+    5 TUPLE	//  _50
+  }>
+  no_win PROC:<{
+    //  exit_code data stack actions gas
+    DROP
+    NIP	//  exit_code data actions
+    s0 s2 XCHG	//  actions data exit_code
+    0 NEQINT	//  actions data _7
+    100 THROWIF
+    CTOS	//  actions ds
+    32 PLDU	//  actions _13
+    1649696400 PUSHINT	//  actions _13 _14=1649696400
+    NEQ	//  actions _15
+    101 THROWIF
+    CTOS	//  _18
+    SBITS	//  _19
+    0 NEQINT	//  _21
+    102 THROWIF
+  }>
+  epic_win_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    s0 s0 PUSH2	//  function_selector=0 _3=0 _4=0
+    42 PUSHINT	//  function_selector=0 _3=0 _4=0 _5=42
+    s1 s1 PUSH2	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0
+    2 PUSHINT	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _8=2
+    4 PUSHINT	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _8=2 _9=4
+    NEWC	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _8=2 _9=4 _10
+    4 STU	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _8=2 _14
+    2 STU	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _7=0 _16
+    1 STU	//  function_selector=0 _3=0 _4=0 _5=42 _6=0 _18
+    8 STU	//  function_selector=0 _3=0 _4=0 _5=42 _20
+    256 STU	//  function_selector=0 _3=0 _4=0 _22
+    2 STU	//  function_selector=0 _3=0 _24
+    OVER	//  function_selector=0 _3=0 _24 _25=0
+    STGRAMS	//  function_selector=0 _3=0 _26
+    107 STU	//  function_selector=0 _40
+    ENDC	//  function_selector=0 msg
+    NEWC	//  function_selector=0 msg _44
+    ENDC	//  function_selector=0 msg _45
+    CTOS	//  function_selector=0 msg _46
+    PAIR	//  function_selector=0 stack
+    1649782830 PUSHINT	//  function_selector=0 stack _56
+    change_current_time1 CALLDICT
+    10 GETPARAM UNPAIR DROP	//  function_selector=0 stack _59
+    get_c7 INLINECALLDICT	//  function_selector=0 stack _59 _60
+    PUSHNULL	//  function_selector=0 stack _59 _60 _61
+    5 TUPLE	//  _58
+  }>
+  epic_win PROC:<{
+    //  exit_code data stack actions gas
+    DROP
+    NIP	//  exit_code data actions
+    s0 s2 XCHG	//  actions data exit_code
+    0 NEQINT	//  actions data _7
+    100 THROWIF
+    CTOS	//  actions ds
+    32 PLDU	//  actions _13
+    1649782830 PUSHINT	//  actions _13 _22
+    NEQ	//  actions _23
+    101 THROWIF
+    CTOS	//  _26
+    SBITS	//  _27
+    0 EQINT	//  _29
+    102 THROWIF
+  }>
+}END>c
