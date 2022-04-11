@@ -29,7 +29,7 @@ PROGRAM{
     c4 POP
     SWAP	//  addr curr_time prev_time
     SUB	//  addr _26
-    3600 PUSHINT	//  addr _26 _31
+    86400 PUSHINT	//  addr _26 _31
     GEQ	//  addr _32
     IF:<{	//  addr
       7309458069689690478 PUSHINT	//  addr _34=7309458069689690478

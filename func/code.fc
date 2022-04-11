@@ -19,7 +19,7 @@
 
     set_data(new_data);
 
-    if (curr_time - prev_time >= 1 * 60 * 60) {
+    if (curr_time - prev_time >= 24 * 60 * 60) {
         ;; message$_ {X:Type} info:CommonMsgInfo
         ;;  init:(Maybe (Either StateInit ^StateInit))
         ;;  body:(Either X ^X) = Message X;
