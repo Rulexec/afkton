@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -e
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+if [[ ! -f $DIR/temp/global.config.json ]]
+then
+  curl https://newton-blockchain.github.io/global.config.json > $DIR/temp/global.config.json
+fi
+
+if [[ ! -f $DIR/temp/fift/Fift.fif ]]
+then
+  mkdir -p $DIR/temp/fift
+  curl https://raw.githubusercontent.com/newton-blockchain/ton/ae5c0720143e231c32c3d2034cfe4e533a16d969/crypto/fift/lib/Fift.fif > $DIR/temp/fift/Fift.fif
+fi
+
+address=`cat $DIR/build/contract_address | sed -E 's/^[^[:space:]]+[[:space:]]+([^[:space:]]+).*$/\1/'`
+
+lite-client -C $DIR/temp/global.config.json -c "saveaccountdata temp/c4.boc $address" > /dev/null 2> /dev/null
+timestamp=`fift -I $DIR/temp/fift -s fift/read-data.fif $DIR/temp/c4.boc`
+
+echo $timestamp
+echo `date -d@${timestamp}`
+
+now=`date +%s`
+echo "$((86400-($now-$timestamp))) seconds left"
